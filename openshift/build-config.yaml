@@ -1,0 +1,27 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: minimal-api-build
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'minimal-api:latest'
+  resources: {}
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy:
+      env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
+        - name: ASPNETCORE_URLS
+          value: 'http://*:8080'
+      dockerfilePath: Dockerfile
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/pbolduc/minimal-api'
+      ref: main
+  runPolicy: Serial

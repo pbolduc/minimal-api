@@ -1,0 +1,14 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: minimal-api
+spec:
+  to:
+    kind: Service
+    name: minimal-api
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  path: /
+  port:
+    targetPort: 8080
