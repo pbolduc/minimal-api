@@ -24,4 +24,5 @@ spec:
     git:
       uri: 'https://github.com/pbolduc/minimal-api'
       ref: main
+    contextDir: src
   runPolicy: Serial
